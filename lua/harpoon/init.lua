@@ -171,7 +171,10 @@ function M.save()
     M.refresh_projects_b4update()
 
     log.trace("save(): Saving cache config to", cache_config)
+    local menu = HarpoonConfig.menu
+    HarpoonConfig.menu = nil
     Path:new(cache_config):write(vim.fn.json_encode(HarpoonConfig), "w")
+    HarpoonConfig.menu = menu
 end
 
 local function read_config(local_config)
